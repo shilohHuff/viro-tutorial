@@ -19,6 +19,8 @@ import {
   ViroAnimations,
 } from 'react-viro';
 
+const COUNT=1000;
+
 export default class HelloWorldSceneAR extends Component {
 
   constructor() {
@@ -26,44 +28,79 @@ export default class HelloWorldSceneAR extends Component {
 
     // Set initial state here
     this.state = {
-      text : "Initializing AR..."
+      text : "Initializing AR...",
+      money : [COUNT],
+      moneyRefs : [COUNT]
     };
-
+    
+    
     // bind 'this' to functions
     this._onInitialized = this._onInitialized.bind(this);
+    this.makeItRain = this.makeItRain.bind(this);
+
+
+    this.makeItRain(COUNT);
+  }
+
+
+
+  makeItRain(count) {
+    let newMoney = [];
+    console.log("start");
+    for(let i = 0; i < count; i++){
+      let item = <ViroBox
+          key={i}
+          ref={(component)=>{
+            let oldMoney = this.state.moneyRefs;
+            oldMoney[i] = component;
+            this.setState({
+              moneyRefs:oldMoney
+            });
+          }}
+          position={[Math.random(),(i*.1)+1,Math.random()]}
+          height={.01} width={.16} length={.07}
+          dragType={"FixedToWorld"}
+          onDrag={()=>{}}
+          onCollision={(tag, oldPosition)=>{
+              this.state.moneyRefs[i].setNativeProps({physicsBody:{
+                type:'Static', mass:0
+              }});
+              
+          }}
+          physicsBody={{
+            type:'Dynamic', mass:10, friction:1.0, restitution:0.0
+          }}
+          materials={["grid"]}
+        />;
+        
+
+        newMoney.push(item);
+    }
+    this.state.money = newMoney;
   }
 
   render() {
     return (
-      <ViroARScene onTrackingUpdated={this._onInitialized} >
+      <ViroARScene displayPointCloud={true} anchorDetectionTypes={"PlanesHorizontal"} onTrackingUpdated={this._onInitialized} >
         <ViroText text={this.state.text} scale={[.5, .5, .5]} position={[0, 0, -1]} style={styles.helloWorldTextStyle} />
         <ViroAmbientLight color={"#aaaaaa"} />
         <ViroSpotLight innerAngle={5} outerAngle={90} direction={[0,-1,-.2]}
           position={[0, 3, 1]} color="#ffffff" castsShadow={true} />
         <ViroARPlane
-          minHeight={.5}
-          minwidth={.5}
+          minHeight={.1}
+          minwidth={.1}
+          visible={true}
+          opacity={1}
         >
+          {this.state.money}
           <ViroBox
-            position={[0,1,-3]}
-            height={1} width={1} length={1}
+            position={[0,-5,0]}
+            height={10} width={100} length={100}
             physicsBody={{
-              type:'Static', mass:0
+              type:'Kinematic', mass:0
             }}
-          />
-          <ViroBox
-            position={[0,1,-3]}
-            height={1} width={1} length={1}
-            physicsBody={{
-              type:'Static', mass:0
-            }}
-          />
-          <ViroBox
-            position={[0,1,-3]}
-            height={1} width={1} length={1}
-            physicsBody={{
-              type:'Static', mass:0
-            }}
+            opacity={0}
+            materials={["grid"]}
           />
         </ViroARPlane>
         <ViroNode position={[0,-1,0]} dragType="FixedToWorld" onDrag={()=>{}} >
