@@ -29,8 +29,8 @@ export default class HelloWorldSceneAR extends Component {
 		// Set initial state here
 		this.state = {
 			text: "Initializing AR...",
-			money: [COUNT],
-			moneyRefs: [COUNT]
+			money: [],
+			moneyRefs: []
 		};
 
 
@@ -47,9 +47,9 @@ export default class HelloWorldSceneAR extends Component {
 	makeItRain(count) {
 		let newMoney = [];
 		console.log("start");
-		for (let i = 0; i < count; i++) {
-			for (let j = 0; j < count; j++) {
-				for (let k = 0; k < count; k++) {
+		for (let i = 0; i < (count/3); i++) {
+			for (let j = 0; j < (count); j++) {
+				for (let k = 0; k < (count*3); k++) {
 					let item = <ViroBox
 							key={i}
 							ref={(component) => {
@@ -59,7 +59,7 @@ export default class HelloWorldSceneAR extends Component {
 									moneyRefs: oldMoney
 								});
 							}}
-							position={[(i*.16), (j*.01) + 1, (k*.07)]}
+							position={[(i*.16), (k*.01), (j*.07)]}
 							height={.01} width={.16} length={.07}
 							dragType={"FixedToWorld"}
 							onDrag={() => { }}
@@ -111,13 +111,12 @@ export default class HelloWorldSceneAR extends Component {
 				</ViroARPlane>
 				<ViroNode position={[0, -1, 0]} dragType="FixedToWorld" onDrag={() => { }} >
 					<Viro3DObject
-						source={require('./res/emoji_smile/emoji_smile.vrx')}
-						resources={[require('./res/emoji_smile/emoji_smile_diffuse.png'),
-						require('./res/emoji_smile/emoji_smile_normal.png'),
-						require('./res/emoji_smile/emoji_smile_specular.png')]}
-						position={[-.5, .5, -1]}
-						scale={[.2, .2, .2]}
-						type="VRX" />
+						source={require('./res/dollar-stack/dollar-stack.obj')}
+						resources={[require('./res/dollar-stack/dollar_01.svg.png'),
+						require('./res/dollar-stack/dollar.mtl')]}
+						position={[0, 0, 0]}
+						scale={[.02, .02, .02]}
+						type="OBJ" />
 				</ViroNode>
 			</ViroARScene>
 		);
@@ -136,7 +135,7 @@ export default class HelloWorldSceneAR extends Component {
 
 ViroMaterials.createMaterials({
 	grid: {
-		diffuseTexture: require('./res/grid_bg.jpg'),
+		diffuseTexture: require('./res/dollar-stack/dollar_01.svg.png'),
 	},
 });
 
