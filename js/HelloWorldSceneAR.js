@@ -47,9 +47,9 @@ export default class HelloWorldSceneAR extends Component {
 	makeItRain(count) {
 		let newMoney = [];
 		console.log("start");
-		for (let i = 0; i < count; i++) {
-			for (let j = 0; j < count; j++) {
-				for (let k = 0; k < count; k++) {
+		for (let i = 0; i < (count/3); i++) {
+			for (let j = 0; j < (count); j++) {
+				for (let k = 0; k < (count*3); k++) {
 					let item = <ViroBox
 							key={i}
 							ref={(component) => {
@@ -59,7 +59,7 @@ export default class HelloWorldSceneAR extends Component {
 									moneyRefs: oldMoney
 								});
 							}}
-							position={[(i*.16), (j*.01) + 1, (k*.07)]}
+							position={[(i*.16), (k*.01), (j*.07)]}
 							height={.01} width={.16} length={.07}
 							dragType={"FixedToWorld"}
 							onDrag={() => { }}
