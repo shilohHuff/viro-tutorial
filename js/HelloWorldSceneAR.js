@@ -29,8 +29,8 @@ export default class HelloWorldSceneAR extends Component {
 		// Set initial state here
 		this.state = {
 			text: "Initializing AR...",
-			money: [COUNT],
-			moneyRefs: [COUNT]
+			money: [],
+			moneyRefs: []
 		};
 
 
