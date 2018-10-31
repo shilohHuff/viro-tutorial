@@ -62,7 +62,7 @@ export default class HelloWorldSceneAR extends Component {
 							dragType={"FixedToWorld"}
 							onDrag={() => { }}
 							onCollision={(tag, oldPosition) => {
-								
+
 
 							}}
 							physicsBody={{
@@ -84,10 +84,6 @@ export default class HelloWorldSceneAR extends Component {
 			<ViroARScene displayPointCloud={true} anchorDetectionTypes={"PlanesHorizontal"} onTrackingUpdated={this._onInitialized} >
 				<ViroText text={this.state.initialText} scale={[.7, .7, .7]} position={[0, 0, -1]} style={styles.helloWorldTextStyle} />
 				<ViroAmbientLight color={"#aaaaaa"} />
-				<ViroNode position={[-0.5, 0, -2]} scale={[1.0, 1.0, 1.0]}>
-					<ViroText text={this.state.welcomeText1} position={[0, 1, 0]} style={styles.helloWorldTextStyle} />
-					<ViroText text={this.state.welcomeText2} style={styles.helloWorldTextStyle} />
-				</ViroNode>
 				<ViroSpotLight innerAngle={5} outerAngle={90} direction={[0, -1, -.2]}
 					position={[0, 3, 1]} color="#ffffff" castsShadow={true} />
 				<ViroARPlane
@@ -96,7 +92,11 @@ export default class HelloWorldSceneAR extends Component {
 					visible={true}
 					opacity={1}
 				>
+				<ViroNode position={[-0.5, 0, -2]} scale={[1.0, 1.0, 1.0]}>
+					<ViroText text={this.state.welcomeText1} position={[0, 1.5, 0]} style={styles.helloWorldTextStyle} />
+					<ViroText text={this.state.welcomeText2} position={[0, 1, 0]} style={styles.helloWorldTextStyle} />
 					{this.state.money}
+				</ViroNode>
 					<ViroBox
 						position={[0, -5, 0]}
 						height={10} width={100} length={100}
