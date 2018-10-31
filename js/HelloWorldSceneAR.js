@@ -19,25 +19,20 @@ import {
 	ViroAnimations,
 } from 'react-viro';
 
-const COUNT = 10;
+const COUNT = 1000;
 
 export default class HelloWorldSceneAR extends Component {
 
 	constructor() {
 		super();
-
-		// Set initial state here
 		this.state = {
 			text: "Initializing AR...",
 			money: [],
 			moneyRefs: []
 		};
 
-
-		// bind 'this' to functions
 		this._onInitialized = this._onInitialized.bind(this);
 		this.makeItRain = this.makeItRain.bind(this);
-
 
 		this.makeItRain(COUNT);
 	}
@@ -47,9 +42,10 @@ export default class HelloWorldSceneAR extends Component {
 	makeItRain(count) {
 		let newMoney = [];
 		console.log("start");
-		for (let i = 0; i < (count/3); i++) {
-			for (let j = 0; j < (count); j++) {
-				for (let k = 0; k < (count*3); k++) {
+		count = Math.cbrt(count)
+		for (let i = 0; i < (count/5); i++) {
+			for (let j = 0; j < (count/2); j++) {
+				for (let k = 0; k < (count*5*2); k++) {
 					let item = <ViroBox
 							key={i}
 							ref={(component) => {
@@ -59,16 +55,12 @@ export default class HelloWorldSceneAR extends Component {
 									moneyRefs: oldMoney
 								});
 							}}
-							position={[(i*.16), (k*.01), (j*.07)]}
-							height={.01} width={.16} length={.07}
+							position={[(i*.16), (k*.002), (j*.07)]}
+							height={.001} width={.16} length={.07}
 							dragType={"FixedToWorld"}
 							onDrag={() => { }}
 							onCollision={(tag, oldPosition) => {
-								this.state.moneyRefs[i].setNativeProps({
-									physicsBody: {
-										type: 'Static', mass: 0
-									}
-								});
+								
 
 							}}
 							physicsBody={{
@@ -113,9 +105,9 @@ export default class HelloWorldSceneAR extends Component {
 					<Viro3DObject
 						source={require('./res/dollar-stack/dollar-stack.obj')}
 						resources={[require('./res/dollar-stack/dollar_01.svg.png'),
-						require('./res/dollar-stack/dollar.mtl')]}
+						require('./res/dollar-stack/dollar-stack.mtl')]}
 						position={[0, 0, 0]}
-						scale={[.02, .02, .02]}
+						scale={[.1, .1, .1]}
 						type="OBJ" />
 				</ViroNode>
 			</ViroARScene>
@@ -135,7 +127,7 @@ export default class HelloWorldSceneAR extends Component {
 
 ViroMaterials.createMaterials({
 	grid: {
-		diffuseTexture: require('./res/dollar-stack/dollar_01.svg.png'),
+		diffuseTexture: require('./res/dollar-stack/dollar-stack_dollar-only.png'),
 	},
 });
 
