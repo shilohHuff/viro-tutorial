@@ -1,4 +1,4 @@
-# Blender MTL File: 'dollar_04.5.blend'
+# Blender MTL File: 'dollar_05.5.blend'
 # Material Count: 1
 
 newmtl Material
@@ -10,4 +10,4 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd /home/muartix/_art/dollar/dollar_01.svg.png
+map_Kd ./dollar_01.svg.png
