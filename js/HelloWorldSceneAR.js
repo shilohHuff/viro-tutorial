@@ -28,7 +28,9 @@ export default class HelloWorldSceneAR extends Component {
 
 		// Set initial state here
 		this.state = {
-			text: "Initializing AR...",
+			initialText: "Initializing AR...",
+			welcomeText1: "",
+			welcomeText2: "",
 			money: [],
 			moneyRefs: []
 		};
@@ -88,8 +90,12 @@ export default class HelloWorldSceneAR extends Component {
 	render() {
 		return (
 			<ViroARScene displayPointCloud={true} anchorDetectionTypes={"PlanesHorizontal"} onTrackingUpdated={this._onInitialized} >
-				<ViroText text={this.state.text} scale={[.5, .5, .5]} position={[0, 0, -1]} style={styles.helloWorldTextStyle} />
+				<ViroText text={this.state.initialText} scale={[.7, .7, .7]} position={[0, 0, -1]} style={styles.helloWorldTextStyle} />
 				<ViroAmbientLight color={"#aaaaaa"} />
+				<ViroNode position={[-0.5, 0, -2]} scale={[1.0, 1.0, 1.0]}>
+					<ViroText text={this.state.welcomeText1} position={[0, 1, 0]} style={styles.helloWorldTextStyle} />
+					<ViroText text={this.state.welcomeText2} style={styles.helloWorldTextStyle} />
+				</ViroNode>
 				<ViroSpotLight innerAngle={5} outerAngle={90} direction={[0, -1, -.2]}
 					position={[0, 3, 1]} color="#ffffff" castsShadow={true} />
 				<ViroARPlane
@@ -125,7 +131,9 @@ export default class HelloWorldSceneAR extends Component {
 	_onInitialized(state, reason) {
 		if (state == ViroConstants.TRACKING_NORMAL) {
 			this.setState({
-				text: "Hello Joshie poo!"
+				initialText: "",
+				welcomeText1: "Welcome to your",
+				welcomeText2: "money pile."
 			});
 		} else if (state == ViroConstants.TRACKING_NONE) {
 			// Handle loss of tracking
