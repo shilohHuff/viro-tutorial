@@ -20,7 +20,11 @@ import {
 } from 'react-viro';
 
 import Dollar from './Dollar';
-const COUNT = 50;
+import HundredDollarStack from './HundredDollarStack';
+
+
+
+const COUNT = 100;
 
 export default class MakeItRainScene extends Component {
 
@@ -46,9 +50,9 @@ export default class MakeItRainScene extends Component {
 				for (let k = 0; k < (count*5*2); k++) {
 					let index = i + j + k;
 					let item = (
-						<Dollar 
-							key={i+''+j+''+k} 
-							position={[Math.random(), k, Math.random()]} 
+						<HundredDollarStack
+							key={i+''+j+''+k}
+							position={[Math.random(), k, Math.random()]}
 							physicsBody={{
 								type: 'Dynamic',
 								mass: 1
@@ -76,7 +80,7 @@ export default class MakeItRainScene extends Component {
 					opacity={1}
 				>
 					{this.state.money}
-					<ViroBox
+					{<ViroBox
 						position={[0, -5, 0]}
 						height={10} width={100} length={100}
 						physicsBody={{
@@ -84,7 +88,7 @@ export default class MakeItRainScene extends Component {
 						}}
 						opacity={0}
 						materials={["grid"]}
-					/>
+					/>}
 				</ViroARPlane>
 			</ViroARScene>
 		);
@@ -103,11 +107,6 @@ export default class MakeItRainScene extends Component {
 	}
 }
 
-ViroMaterials.createMaterials({
-	grid: {
-		diffuseTexture: require('./res/dollar-stack/dollar-stack_dollar-only.png'),
-	},
-});
 
 var styles = StyleSheet.create({
 	helloWorldTextStyle: {
