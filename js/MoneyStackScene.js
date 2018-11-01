@@ -21,7 +21,7 @@ import {
 
 import HundredDollarStack from './HundredDollarStack';
 import Dollar from './Dollar';
-const COUNT = 50;
+const COUNT = 125;
 
 export default class MoneyStackScene extends Component {
 
@@ -29,8 +29,8 @@ export default class MoneyStackScene extends Component {
 		super();
 		this.state = {
 			initialText: "Initializing AR...",
-			welcomeText1: "",
-			welcomeText2: "",
+			moneyText: "",
+			heightOffset: 0.0,
 			money: []
 		};
 		this._onInitialized = this._onInitialized.bind(this);
@@ -53,6 +53,7 @@ export default class MoneyStackScene extends Component {
 				}
 			}
 		}
+		this.state.heightOffset = count * 5 * 2 * .003;
 		this.state.money = moneyStack;
 	}
 
@@ -70,8 +71,10 @@ export default class MoneyStackScene extends Component {
 					opacity={1}
 				>
 					<ViroNode position={[-0.5, 0, -2]} scale={[1.0, 1.0, 1.0]}>
-						<ViroText text={this.state.welcomeText1} position={[0, 1.5, 0]} style={styles.helloWorldTextStyle} />
-						<ViroText text={this.state.welcomeText2} position={[0, 1, 0]} style={styles.helloWorldTextStyle} />
+						<ViroText text={this.state.moneyText} position={[0, 0.5+this.state.heightOffset, 0]} style={styles.helloWorldTextStyle} />
+						 {
+							 /*<ViroText text={this.state.welcomeText2} position={[0, 1, 0]} style={styles.helloWorldTextStyle} />*/
+						 }
 						{this.state.money}
 					</ViroNode>
 					<ViroBox
@@ -92,8 +95,7 @@ export default class MoneyStackScene extends Component {
 		if (state == ViroConstants.TRACKING_NORMAL) {
 			this.setState({
 				initialText: "",
-				welcomeText1: "Welcome to your",
-				welcomeText2: "money pile."
+				moneyText: "$" + COUNT
 			});
 		} else if (state == ViroConstants.TRACKING_NONE) {
 			// Handle loss of tracking
