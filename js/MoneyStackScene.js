@@ -19,9 +19,11 @@ import {
 	ViroAnimations,
 } from 'react-viro';
 
-const COUNT = 1000;
+import HundredDollarStack from './HundredDollarStack';
+import Dollar from './Dollar';
+const COUNT = 50;
 
-export default class HelloWorldSceneAR extends Component {
+export default class MoneyStackScene extends Component {
 
 	constructor() {
 		super();
@@ -34,44 +36,24 @@ export default class HelloWorldSceneAR extends Component {
 		};
 
 		this._onInitialized = this._onInitialized.bind(this);
-		this.makeItRain = this.makeItRain.bind(this);
+		this.generateMoneyStack = this.generateMoneyStack.bind(this);
 
-		this.makeItRain(COUNT);
+		this.generateMoneyStack(COUNT);
 	}
 
 
 
-	makeItRain(count) {
+	generateMoneyStack(count) {
 		let newMoney = [];
 		console.log("start");
 		count = Math.cbrt(count)
 		for (let i = 0; i < (count/5); i++) {
 			for (let j = 0; j < (count/2); j++) {
 				for (let k = 0; k < (count*5*2); k++) {
-					let item = <ViroBox
-							key={i}
-							ref={(component) => {
-								let oldMoney = this.state.moneyRefs;
-								oldMoney[i] = component;
-								this.setState({
-									moneyRefs: oldMoney
-								});
-							}}
-							position={[(i*.16), (k*.002), (j*.07)]}
-							height={.001} width={.16} length={.07}
-							dragType={"FixedToWorld"}
-							onDrag={() => { }}
-							onCollision={(tag, oldPosition) => {
-
-
-							}}
-							physicsBody={{
-								type: 'Static', mass: 0
-							}}
-							materials={["grid"]}
-					/>;
-
-
+					let index = i + j + k;
+					let item = (
+						<Dollar key={i+''+j+''+k} position={[(i*.16), (k*.003), (j*.07)]} />
+					);
 					newMoney.push(item);
 				}
 			}
@@ -113,7 +95,6 @@ export default class HelloWorldSceneAR extends Component {
 						resources={[require('./res/dollar-stack/dollar_01.svg.png'),
 						require('./res/dollar-stack/dollar-stack.mtl')]}
 						position={[0, 0, 0]}
-						scale={[.1, .1, .1]}
 						type="OBJ" />
 				</ViroNode>
 			</ViroARScene>
@@ -139,15 +120,6 @@ ViroMaterials.createMaterials({
 	},
 });
 
-ViroAnimations.registerAnimations({
-	rotate: {
-		properties: {
-			rotateY: "+=90"
-		},
-		duration: 250, //.25 seconds
-	},
-});
-
 var styles = StyleSheet.create({
 	helloWorldTextStyle: {
 		fontFamily: 'Arial',
@@ -158,4 +130,4 @@ var styles = StyleSheet.create({
 	},
 });
 
-module.exports = HelloWorldSceneAR;
+module.exports = MoneyStackScene;
