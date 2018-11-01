@@ -63,21 +63,30 @@ export default class MoneyStackScene extends Component {
 				<ViroText text={this.state.initialText} scale={[.7, .7, .7]} position={[0, 0, -1]} style={styles.helloWorldTextStyle} />
 				<ViroAmbientLight color={"#aaaaaa"} />
 				<ViroSpotLight innerAngle={5} outerAngle={90} direction={[0, -1, -.2]}
-					position={[0, 3, 1]} color="#ffffff" castsShadow={true}
-				/>
-				<ViroNode position={[-0.5, 0, -2]} scale={[1.0, 1.0, 1.0]}>
-					<ViroText text={this.state.welcomeText1} position={[0, 1.5, 0]} style={styles.helloWorldTextStyle} />
-					<ViroText text={this.state.welcomeText2} position={[0, 1, 0]} style={styles.helloWorldTextStyle} />
-					{this.state.money}
-				</ViroNode>
-				<ViroBox
-					position={[0, -5, 0]}
-					height={10} width={100} length={100}
-					physicsBody={{
-						type: 'Kinematic', mass: 0
-					}}
-					opacity={0}
-				/>
+					position={[0, 3, 1]} color="#ffffff" castsShadow={true} />
+				<ViroARPlane
+					minHeight={.1}
+					minwidth={.1}
+					visible={true}
+					opacity={1}
+				>
+					<ViroNode position={[-0.5, 0, -2]} scale={[1.0, 1.0, 1.0]}>
+						<ViroText text={this.state.moneyText} position={[0, 0.5+this.state.heightOffset, 0]} style={styles.helloWorldTextStyle} />
+						 {
+							 /*<ViroText text={this.state.welcomeText2} position={[0, 1, 0]} style={styles.helloWorldTextStyle} />*/
+						 }
+						{this.state.money}
+					</ViroNode>
+					<ViroBox
+						position={[0, -5, 0]}
+						height={10} width={100} length={100}
+						physicsBody={{
+							type: 'Kinematic', mass: 0
+						}}
+						opacity={0}
+						materials={["grid"]}
+					/>
+				</ViroARPlane>
 			</ViroARScene>
 		);
 	}
