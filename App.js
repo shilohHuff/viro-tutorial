@@ -28,16 +28,16 @@ var sharedProps = {
   apiKey:"688B6179-61A8-44A4-871B-E330CA12690E",
 }
 
-// Sets the default scene you want for AR and VR
-var InitialARScene = require('./js/MoneyStackScene');
-var InitialVRScene = require('./js/HelloWorldScene');
+var MoneyStackScene = require('./js/MoneyStackScene');
+var MakeItRainScene = require('./js/MakeItRainScene');
 
 var UNSET = "UNSET";
-var AR_NAVIGATOR_TYPE = "AR";
+var MAKE_IT_RAIN = "MAKE_IT_RAIN";
+var MONEY_STACK = "MONEY_STACK";
 
 // This determines which type of experience to launch in, or UNSET, if the user should
 // be presented with a choice of AR or VR. By default, we offer the user a choice.
-var defaultNavigatorType = AR_NAVIGATOR_TYPE;
+var defaultNavigatorType = UNSET;
 
 export default class ViroSample extends Component {
   constructor() {
@@ -51,18 +51,65 @@ export default class ViroSample extends Component {
     this._exitViro = this._exitViro.bind(this);
   }
 
-  // Replace this function with the contents of _getVRNavigator() or _getARNavigator()
+
+// Replace this function with the contents of _getVRNavigator() or _getARNavigator()
   // if you are building a specific type of experience.
   render() {
+    if (this.state.navigatorType == UNSET) {
+      return this.getExperienceSelector();
+    } else if (this.state.navigatorType == MAKE_IT_RAIN) {
+      return this.getMakeItRainScene();
+    } else if (this.state.navigatorType == MONEY_STACK) {
+      return this.getMoneyStackScene();
+    }
+  }
+  // Presents the user with a choice of an AR or VR experience
+  getExperienceSelector() {
     return (
-      <ViroARSceneNavigator {...this.state.sharedProps}
-        initialScene={{scene: InitialARScene}} />
+      <View style={localStyles.outer} >
+        <View style={localStyles.inner} >
+          <Text style={localStyles.titleText}>
+            What would you like to do?
+          </Text>
+          <TouchableHighlight style={localStyles.buttons}
+            onPress={this._getExperienceButtonOnPress(MONEY_STACK)}
+            underlayColor={'#68a0ff'} >
+            <Text style={localStyles.buttonText}>View My Money</Text>
+          </TouchableHighlight>
+          <TouchableHighlight style={localStyles.buttons}
+            onPress={this._getExperienceButtonOnPress(MAKE_IT_RAIN)}
+            underlayColor={'#68a0ff'} >
+            <Text style={localStyles.buttonText}>Make It Rain!</Text>
+          </TouchableHighlight>
+        </View>
+      </View>
     );
   }
 
+  getMoneyStackScene() {
+    return (
+      <ViroARSceneNavigator {...this.state.sharedProps}
+        initialScene={{scene: MoneyStackScene}} />
+    );
+  }
+
+  getMakeItRainScene() {
+    return (
+      <ViroARSceneNavigator {...this.state.sharedProps}
+        initialScene={{scene: MakeItRainScene}} />
+    );
+  }
+
+  _getExperienceButtonOnPress(navigatorType) {
+    return () => {
+      this.setState({
+        navigatorType : navigatorType
+      })
+    }
+  }
 
   // This function "exits" Viro by setting the navigatorType to UNSET.
-  _exitViro() {
+  _exitViro() { 
     this.setState({
       navigatorType : UNSET
     })

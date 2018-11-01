@@ -44,6 +44,13 @@ export default class Dollar extends Component {
         if(!position){
            position = [0,0,0];
         }
+
+        let physicsBody = this.props.physicsBody;
+        if(!physicsBody){
+            physicsBody={
+                type: 'Static', mass: 0
+            }
+        }
         return (
             <ViroBox
                 position={[...position]}
@@ -52,9 +59,7 @@ export default class Dollar extends Component {
                 dragType="FixedToWorld"
                 onDrag={this.onDrag}
                 onCollision={this.onCollision}
-                physicsBody={{
-                    type: 'Static', mass: 0
-                }}
+                physicsBody={physicsBody}
                 materials={["dollar"]}
             />
         );

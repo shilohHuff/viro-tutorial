@@ -19,16 +19,15 @@ import {
 	ViroAnimations,
 } from 'react-viro';
 
-import HundredDollarStack from './HundredDollarStack';
 import Dollar from './Dollar';
 const COUNT = 50;
 
-export default class MoneyStackScene extends Component {
+export default class MakeItRainScene extends Component {
 
 	constructor() {
 		super();
 		this.state = {
-			initialText: "Initializing AR...",
+			initialText: "Initializing Money Rain",
 			welcomeText1: "",
 			welcomeText2: "",
 			money: []
@@ -47,7 +46,14 @@ export default class MoneyStackScene extends Component {
 				for (let k = 0; k < (count*5*2); k++) {
 					let index = i + j + k;
 					let item = (
-						<Dollar key={i+''+j+''+k} position={[(i*.16), (k*.003), (j*.07)]} />
+						<Dollar 
+							key={i+''+j+''+k} 
+							position={[Math.random(), k, Math.random()]} 
+							physicsBody={{
+								type: 'Dynamic',
+								mass: 1
+							}}
+						/>
 					);
 					moneyStack.push(item);
 				}
@@ -69,11 +75,7 @@ export default class MoneyStackScene extends Component {
 					visible={true}
 					opacity={1}
 				>
-					<ViroNode position={[-0.5, 0, -2]} scale={[1.0, 1.0, 1.0]}>
-						<ViroText text={this.state.welcomeText1} position={[0, 1.5, 0]} style={styles.helloWorldTextStyle} />
-						<ViroText text={this.state.welcomeText2} position={[0, 1, 0]} style={styles.helloWorldTextStyle} />
-						{this.state.money}
-					</ViroNode>
+					{this.state.money}
 					<ViroBox
 						position={[0, -5, 0]}
 						height={10} width={100} length={100}
@@ -117,4 +119,4 @@ var styles = StyleSheet.create({
 	},
 });
 
-module.exports = MoneyStackScene;
+module.exports = MakeItRainScene;
