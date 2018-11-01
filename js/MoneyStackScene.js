@@ -21,7 +21,7 @@ import {
 
 import HundredDollarStack from './HundredDollarStack';
 import Dollar from './Dollar';
-const COUNT = 125;
+const COUNT = 250;
 
 export default class MoneyStackScene extends Component {
 
@@ -42,9 +42,9 @@ export default class MoneyStackScene extends Component {
 		let moneyStack = [];
 		console.log("start");
 		count = Math.cbrt(count)
-		for (let i = 0; i < (count/5); i++) {
+		for (let i = 0; i < (count/3); i++) {
 			for (let j = 0; j < (count/2); j++) {
-				for (let k = 0; k < (count*5*2); k++) {
+				for (let k = 0; k < (count*3*2); k++) {
 					let index = i + j + k;
 					let item = (
 						<HundredDollarStack key={i+''+j+''+k} position={[(i*.17), (k*.01), (j*.07)]} physicsBody={{type: 'Static',mass: 0}} />
@@ -53,7 +53,7 @@ export default class MoneyStackScene extends Component {
 				}
 			}
 		}
-		this.state.heightOffset = count * 5 * 2 * .003;
+		this.state.heightOffset = count * 3 * 2 * .01;
 		this.state.money = moneyStack;
 	}
 
@@ -84,7 +84,6 @@ export default class MoneyStackScene extends Component {
 							type: 'Kinematic', mass: 0
 						}}
 						opacity={0}
-						materials={["grid"]}
 					/>
 				</ViroARPlane>
 			</ViroARScene>

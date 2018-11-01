@@ -87,7 +87,6 @@ export default class MakeItRainScene extends Component {
 							type: 'Kinematic', mass: 0
 						}}
 						opacity={0}
-						materials={["grid"]}
 					/>}
 				</ViroARPlane>
 			</ViroARScene>
