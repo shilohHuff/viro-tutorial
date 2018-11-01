@@ -19,10 +19,10 @@ import {
 	ViroAnimations,
 } from 'react-viro';
 
-import HundredDollarStack from './HundredDollarStack';
-import Dollar from './Dollar';
-const COUNT = 250;
+import HundredDollarStack from './money-types/HundredDollarStack';
+import Dollar from './money-types/Dollar';
 
+const COUNT = 50;
 export default class MoneyStackScene extends Component {
 
 	constructor() {

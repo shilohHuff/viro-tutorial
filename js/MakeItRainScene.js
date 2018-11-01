@@ -19,8 +19,8 @@ import {
 	ViroAnimations,
 } from 'react-viro';
 
-import Dollar from './Dollar';
-import HundredDollarStack from './HundredDollarStack';
+import Dollar from './money-types/Dollar';
+import HundredDollarStack from './money-types/HundredDollarStack';
 
 
 

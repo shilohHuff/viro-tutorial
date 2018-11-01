@@ -52,10 +52,8 @@ export default class Dollar extends Component {
                 mass: 0
             }
         }
-        return ( <
-            ViroBox position = {
-                [...position]
-            }
+        return (
+          <ViroBox position = {[...position]}
             ref = { this.onReference }
             height = { .002 }
             width = { .16 }
@@ -64,16 +62,14 @@ export default class Dollar extends Component {
             onDrag = { this.onDrag }
             onCollision = { this.onCollision }
             physicsBody = { physicsBody }
-            materials = {
-                ["dollar"]
-            }
-            />
+            materials = {["dollar"]}
+          />
         );
     }
 }
 
 ViroMaterials.createMaterials({
     dollar: {
-        diffuseTexture: require('./res/dollar-stack/dollar-stack_dollar-only.png'),
+        diffuseTexture: require('../res/dollar-stack/dollar-stack_dollar-only.png'),
     },
 });

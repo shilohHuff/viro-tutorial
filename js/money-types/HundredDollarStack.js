@@ -5,8 +5,8 @@ import {
     ViroMaterials
 } from 'react-viro';
 
-const dollarsObj = require('./res/dollar-stack/dollar-stack.obj');
-const dollarsTxr = require('./res/dollar-stack/dollar_01.svg.png');
+const dollarsObj = require('../res/dollar-stack/dollar-stack.obj');
+const dollarsTxr = require('../res/dollar-stack/dollar_01.svg.png');
 
 ViroMaterials.createMaterials({ dollarsStackHundred: { diffuseTexture: dollarsTxr } });
 
@@ -57,21 +57,19 @@ export default class Dollar extends Component {
                 mass: 0
             }
         }
-        return ( <
-            Viro3DObject type = "OBJ"
+        return (
+          <Viro3DObject
+            type = "OBJ"
             source = { dollarsObj }
-            materials = {
-                ["dollarsStackHundred"] }
+            materials = { ["dollarsStackHundred"] }
             ref = { this.onReference }
-            position = {
-                [...position] }
-            scale = {
-                [1, 1, 1] }
+            position = { [...position] }
+            scale = { [1, 1, 1] }
             dragType = "FixedToWorld"
             onDrag = { this.onDrag }
             onCollision = { this.onCollision }
             physicsBody = { physicsBody }
-            />
+          />
         );
     }
 }

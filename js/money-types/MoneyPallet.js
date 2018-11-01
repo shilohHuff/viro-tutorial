@@ -39,7 +39,7 @@ export default class MoneyPallet extends Component {
             this.props.onReference();
         }
     }
-    
+
     render(){
         let position = this.props.position;
         if(!position){
@@ -71,9 +71,9 @@ export default class MoneyPallet extends Component {
 
 ViroMaterials.createMaterials({
 	dollar: {
-		diffuseTexture: require('./res/dollar-stack/dollar-stack_dollar-only.png'),
+		diffuseTexture: require('../res/dollar-stack/dollar-stack_dollar-only.png'),
     },
     grid: {
-		diffuseTexture: require('./res/grid_bg.jpg'),
+		diffuseTexture: require('../res/grid_bg.jpg'),
 	}
 });

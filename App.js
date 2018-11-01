@@ -17,6 +17,8 @@ import {
   TouchableHighlight,
 } from 'react-native';
 
+import MoneyStackScene from './js/MoneyStackScene';
+import MakeItRainScene from './js/MakeItRainScene';
 
 import {
   ViroARSceneNavigator
@@ -28,9 +30,6 @@ import {
 var sharedProps = {
   apiKey:"688B6179-61A8-44A4-871B-E330CA12690E",
 }
-
-var MoneyStackScene = require('./js/MoneyStackScene');
-var MakeItRainScene = require('./js/MakeItRainScene');
 
 var UNSET = "UNSET";
 var MAKE_IT_RAIN = "MAKE_IT_RAIN";
@@ -110,7 +109,7 @@ export default class ViroSample extends Component {
   }
 
   // This function "exits" Viro by setting the navigatorType to UNSET.
-  _exitViro() { 
+  _exitViro() {
     this.setState({
       navigatorType : UNSET
     })
