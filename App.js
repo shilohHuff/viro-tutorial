@@ -17,6 +17,7 @@ import {
   TouchableHighlight,
 } from 'react-native';
 
+
 import {
   ViroARSceneNavigator
 } from 'react-viro';
@@ -170,5 +171,6 @@ var localStyles = StyleSheet.create({
     borderColor: '#fff',
   }
 });
+
 
 module.exports = ViroSample
