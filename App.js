@@ -16,6 +16,10 @@ import {
   PixelRatio,
   TouchableHighlight,
 } from 'react-native';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import reducers from './js/redux/reducers';
+import { addAccount } from './js/redux/actions.js';
 
 import MoneyStackScene from './js/MoneyStackScene';
 import MakeItRainScene from './js/MakeItRainScene';
@@ -39,6 +43,13 @@ var MONEY_STACK = "MONEY_STACK";
 // be presented with a choice of AR or VR. By default, we offer the user a choice.
 var defaultNavigatorType = UNSET;
 
+const store = createStore(reducers);
+
+// initial dispatch
+console.log(store.getState());
+store.dispatch(addAccount("name1", 1200));
+store.dispatch(addAccount("name2", 500));
+
 export default class ViroSample extends Component {
   constructor() {
     super();
@@ -52,15 +63,25 @@ export default class ViroSample extends Component {
   }
 
 
+
 // Replace this function with the contents of _getVRNavigator() or _getARNavigator()
   // if you are building a specific type of experience.
   render() {
-    if (this.state.navigatorType == UNSET) {
-      return this.getExperienceSelector();
-    } else if (this.state.navigatorType == MAKE_IT_RAIN) {
+    return (
+      <Provider store={store}>
+
+        {this.getProvidedExperience()}
+      </Provider>
+    );
+  }
+
+  getProvidedExperience(){
+    if (this.state.navigatorType == MAKE_IT_RAIN) {
       return this.getMakeItRainScene();
     } else if (this.state.navigatorType == MONEY_STACK) {
       return this.getMoneyStackScene();
+    } else {
+      return this.getExperienceSelector();
     }
   }
   // Presents the user with a choice of an AR or VR experience
