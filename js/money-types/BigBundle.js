@@ -6,7 +6,7 @@ import {
 } from 'react-viro';
 
 const dollarsObj = require('../res/dollarStackDouble/dollarStackDouble.obj');
-const dollarsTxr = require('../res/dollar-stack/dollar_01.svg.png');
+const dollarsTxr = require('../res/dollarStackDouble/dollar_01.svg.png');
 
 ViroMaterials.createMaterials({ dollarsStackHundred: { diffuseTexture: dollarsTxr } });
 

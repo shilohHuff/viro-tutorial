@@ -25,13 +25,13 @@ export default class MoneyStackScene extends Component {
 		this.generateMoneyStacks = this.generateMoneyStacks.bind(this);
 	}
 
-	generateMoneyStacks(accountBalance) {
+	generateMoneyStacks(name, accountBalance) {
 		let moneyTypeQuantity = countOfEachMoneyType(accountBalance);
     let moneyStackComponents = [];
-		moneyStackComponents.push(<DollarStack count={moneyTypeQuantity.dollarQuantity.count} />);
-		moneyStackComponents.push(<HundredDollarBundleStack position={[.25,0,0]} count={moneyTypeQuantity.bundleQuantity.count} />);
-		moneyStackComponents.push(<BigBundleStack position={[.5,0,0]} count={moneyTypeQuantity.bigBundleQuantity.count} />);
-		moneyStackComponents.push(<PalletStack position={[-.5,0,-1]} count={moneyTypeQuantity.palletQuantity.count} />);
+		moneyStackComponents.push(<DollarStack key={'DollarStack' + name} count={moneyTypeQuantity.dollarQuantity.count} />);
+		moneyStackComponents.push(<HundredDollarBundleStack key={'HundredDollarBundleStack' + name} position={[.25,0,0]} count={moneyTypeQuantity.bundleQuantity.count} />);
+		moneyStackComponents.push(<BigBundleStack key={'BigBundleStack' + name} position={[.5,0,0]} count={moneyTypeQuantity.bigBundleQuantity.count} />);
+		moneyStackComponents.push(<PalletStack key={'PalletStack' + name} position={[-.5,0,-1]} count={moneyTypeQuantity.palletQuantity.count} />);
 		return moneyStackComponents;
 	}
 
@@ -61,7 +61,7 @@ export default class MoneyStackScene extends Component {
             extrusionDepth={2}
             materials={["frontMaterial", "backMaterial", "sideMaterial"]}
           />
-					{this.generateMoneyStacks(account.balance)}
+					{this.generateMoneyStacks(account.name, account.balance)}
 				</ViroNode>
 		);
 	}

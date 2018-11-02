@@ -26,7 +26,7 @@ export default class DollarStack extends Component {
     			while(x < xDiminsionCount &&  !(stacksGenerated === count)){
     				while(z < zDiminsionCount &&  !(stacksGenerated === count)){
     					let item = (
-    						<Dollar key={x+''+y+''+z} position={[(x*.17), (y*.001), (z*.07)]} physicsBody={{type: 'Static',mass: 0}} />
+    						<Dollar key={'dollar' + stacksGenerated} position={[(x*.17), (y*.001), (z*.07)]} physicsBody={{type: 'Static',mass: 0}} />
     					);
     					stacksGenerated++;
     					moneyStack.push(item);

@@ -26,7 +26,7 @@ export default class PalletStack extends Component {
     			while(z < xDiminsionCount &&  !(stacksGenerated === count)){
     				while(x < zDiminsionCount &&  !(stacksGenerated === count)){
     					let item = (
-    						<Pallet key={x+''+y+''+z} position={[(x*1.2), (y*.645), -(z*1.2)]} physicsBody={{type: 'Static',mass: 0}} />
+    						<Pallet key={'Pallet' + stacksGenerated} position={[(x*1.2), (y*.645), -(z*1.2)]} physicsBody={{type: 'Static',mass: 0}} />
     					);
     					stacksGenerated++;
     					moneyStack.push(item);

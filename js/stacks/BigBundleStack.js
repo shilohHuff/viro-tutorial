@@ -26,7 +26,7 @@ export default class BigBundleStack extends Component {
     			while(x < xDiminsionCount &&  !(stacksGenerated === count)){
     				while(z < zDiminsionCount &&  !(stacksGenerated === count)){
     					let item = (
-    						<BigBundle key={x+''+y+''+z} position={[(x*.17), (y*.021), (z*.07)]} physicsBody={{type: 'Static',mass: 0}} />
+    						<BigBundle key={'BigBundle' + stacksGenerated} position={[(x*.17), (y*.021), (z*.07)]} physicsBody={{type: 'Static',mass: 0}} />
     					);
     					stacksGenerated++;
     					moneyStack.push(item);

@@ -26,7 +26,7 @@ export default class HundredDollarBundleStack extends Component {
     			while(x < xDiminsionCount &&  !(stacksGenerated === count)){
     				while(z < zDiminsionCount &&  !(stacksGenerated === count)){
     					let item = (
-    						<HundredDollarBundle key={x+''+y+''+z} position={[(x*.17), (y*.011), (z*.07)]} physicsBody={{type: 'Static',mass: 0}} />
+    						<HundredDollarBundle key={'HundredDollarBundle' + stacksGenerated} position={[(x*.17), (y*.011), (z*.07)]} physicsBody={{type: 'Static',mass: 0}} />
     					);
     					stacksGenerated++;
     					moneyStack.push(item);
