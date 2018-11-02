@@ -38,17 +38,18 @@ var sharedProps = {
 var UNSET = "UNSET";
 var MAKE_IT_RAIN = "MAKE_IT_RAIN";
 var MONEY_STACK = "MONEY_STACK";
+var ACCOUNT_SELECT = "ACCOUNT_SELECT";
+
+var CHECKING_ACCOUNT="CHECKING_ACCOUNT";
+var SAVINGS_ACCOUNT="SAVINGS_ACCOUNT";
+var SECURED_CARD="SECURED_CARD";
+var ALL_ACCOUNTS="ALL_ACCOUNTS";
 
 // This determines which type of experience to launch in, or UNSET, if the user should
 // be presented with a choice of AR or VR. By default, we offer the user a choice.
 var defaultNavigatorType = UNSET;
 
 const store = createStore(reducers);
-
-// initial dispatch
-console.log(store.getState());
-store.dispatch(addAccount("name1", 1200));
-store.dispatch(addAccount("name2", 500));
 
 export default class ViroSample extends Component {
   constructor() {
@@ -78,12 +79,18 @@ export default class ViroSample extends Component {
   getProvidedExperience(){
     if (this.state.navigatorType == MAKE_IT_RAIN) {
       return this.getMakeItRainScene();
-    } else if (this.state.navigatorType == MONEY_STACK) {
-      return this.getMoneyStackScene();
-    } else {
+    }
+    if (this.state.navigatorType == UNSET) {
       return this.getExperienceSelector();
     }
+    if (this.state.navigatorType == ACCOUNT_SELECT) {
+      return this.getAccountSelector();
+    }
+    if (this.state.navigatorType == MONEY_STACK) {
+      return this.getMoneyStackScene();
+    }
   }
+
   // Presents the user with a choice of an AR or VR experience
   getExperienceSelector() {
     return (
@@ -93,7 +100,7 @@ export default class ViroSample extends Component {
             What would you like to do?
           </Text>
           <TouchableHighlight style={localStyles.buttons}
-            onPress={this._getExperienceButtonOnPress(MONEY_STACK)}
+            onPress={this._getExperienceButtonOnPress(ACCOUNT_SELECT)}
             underlayColor={'#68a0ff'} >
             <Text style={localStyles.buttonText}>View My Money</Text>
           </TouchableHighlight>
@@ -101,6 +108,38 @@ export default class ViroSample extends Component {
             onPress={this._getExperienceButtonOnPress(MAKE_IT_RAIN)}
             underlayColor={'#68a0ff'} >
             <Text style={localStyles.buttonText}>Make It Rain!</Text>
+          </TouchableHighlight>
+        </View>
+      </View>
+    );
+  }
+
+  getAccountSelector() {
+    return (
+      <View style={localStyles.outer} >
+        <View style={localStyles.inner} >
+          <Text style={localStyles.titleText}>
+            Which account(s) would you like to view?
+          </Text>
+          <TouchableHighlight style={localStyles.buttons}
+            onPress={this._getAccountButtonOnPress(CHECKING_ACCOUNT)}
+            underlayColor={'#68a0ff'} >
+            <Text style={localStyles.buttonText}>Checking Account: $42,177</Text>
+          </TouchableHighlight>
+          <TouchableHighlight style={localStyles.buttons}
+            onPress={this._getAccountButtonOnPress(SAVINGS_ACCOUNT)}
+            underlayColor={'#68a0ff'} >
+            <Text style={localStyles.buttonText}>Savings Account: $11,928</Text>
+          </TouchableHighlight>
+          <TouchableHighlight style={localStyles.buttons}
+            onPress={this._getAccountButtonOnPress(SECURED_CARD)}
+            underlayColor={'#68a0ff'} >
+            <Text style={localStyles.buttonText}>Secured Card Account: $1</Text>
+          </TouchableHighlight>
+          <TouchableHighlight style={localStyles.buttons}
+            onPress={this._getAccountButtonOnPress(ALL_ACCOUNTS)}
+            underlayColor={'#68a0ff'} >
+            <Text style={localStyles.buttonText}>View all!</Text>
           </TouchableHighlight>
         </View>
       </View>
@@ -125,6 +164,31 @@ export default class ViroSample extends Component {
     return () => {
       this.setState({
         navigatorType : navigatorType
+      })
+    }
+  }
+
+  _getAccountButtonOnPress(selectionType) {
+    return () => {
+      switch(selectionType) {
+        case CHECKING_ACCOUNT:
+          store.dispatch(addAccount("Checking Account", 42177));
+          break;
+        case SAVINGS_ACCOUNT:
+          store.dispatch(addAccount("Savings Account", 11928));
+          break;
+        case SECURED_CARD:
+          store.dispatch(addAccount("Secured Card", 1));
+          break;
+        default:
+          store.dispatch(addAccount("Checking Account", 42177));
+          store.dispatch(addAccount("Savings Account", 11928));
+          store.dispatch(addAccount("Secured Card", 1));
+          break;
+      }
+      console.log('in menu state', store);
+      this.setState({
+        navigatorType: MONEY_STACK
       })
     }
   }
