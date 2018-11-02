@@ -1,18 +1,7 @@
-# Blender MTL File: 'pallet_05.blend'
-# Material Count: 2
+# Blender MTL File: 'pallet_09.blend'
+# Material Count: 1
 
-newmtl pallet-mat
-Ns 96.078431
-Ka 1.000000 1.000000 1.000000
-Kd 0.640000 0.640000 0.640000
-Ks 0.500000 0.500000 0.500000
-Ke 0.000000 0.000000 0.000000
-Ni 1.000000
-d 1.000000
-illum 2
-map_Kd pallet.png
-
-newmtl stack-mat
+newmtl pallet_combined-mat
 Ns 96.078431
 Ka 1.000000 1.000000 1.000000
 Kd 0.640000 0.640000 0.640000
@@ -21,4 +10,4 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 0
-map_Kd dollar-stack_dollar-only.png
+map_Kd pallet-combined.png
