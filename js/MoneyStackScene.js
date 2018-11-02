@@ -19,42 +19,16 @@ import {
 	ViroAnimations,
 } from 'react-viro';
 
-import HundredDollarStack from './money-types/HundredDollarStack';
-import Dollar from './money-types/Dollar';
+import AccountComponent from './AccountComponent';
 
-const COUNT = 50;
 export default class MoneyStackScene extends Component {
 
 	constructor() {
 		super();
 		this.state = {
 			initialText: "Initializing AR...",
-			moneyText: "",
-			heightOffset: 0.0,
-			money: []
 		};
 		this._onInitialized = this._onInitialized.bind(this);
-		this.generateMoneyStack = this.generateMoneyStack.bind(this);
-		this.generateMoneyStack(COUNT);
-	}
-
-	generateMoneyStack(count) {
-		let moneyStack = [];
-		console.log("start");
-		count = Math.cbrt(count)
-		for (let i = 0; i < (count/3); i++) {
-			for (let j = 0; j < (count/2); j++) {
-				for (let k = 0; k < (count*3*2); k++) {
-					let index = i + j + k;
-					let item = (
-						<HundredDollarStack key={i+''+j+''+k} position={[(i*.17), (k*.01), (j*.07)]} physicsBody={{type: 'Static',mass: 0}} />
-					);
-					moneyStack.push(item);
-				}
-			}
-		}
-		this.state.heightOffset = count * 3 * 2 * .01;
-		this.state.money = moneyStack;
 	}
 
 	render() {
@@ -65,18 +39,14 @@ export default class MoneyStackScene extends Component {
 				<ViroSpotLight innerAngle={5} outerAngle={90} direction={[0, -1, -.2]}
 					position={[0, 3, 1]} color="#ffffff" castsShadow={true} />
 				<ViroARPlane
-					minHeight={.1}
-					minwidth={.1}
+					minHeight={.01}
+					minwidth={.01}
 					visible={true}
 					opacity={1}
 				>
-					<ViroNode position={[-0.5, 0, -2]} scale={[1.0, 1.0, 1.0]}>
-						<ViroText text={this.state.moneyText} position={[0, 0.5+this.state.heightOffset, 0]} style={styles.helloWorldTextStyle} />
-						 {
-							 /*<ViroText text={this.state.welcomeText2} position={[0, 1, 0]} style={styles.helloWorldTextStyle} />*/
-						 }
-						{this.state.money}
-					</ViroNode>
+					<AccountComponent position={[-1,0,0]} account={{name: 'Checkings Account', balance: 42177}}/>
+					<AccountComponent position={[0,0,0]} account={{name: 'Savings Account', balance: 11928}}/>
+					<AccountComponent position={[1,0,0]} account={{name: 'Secured Card', balance: 1}}/>
 					<ViroBox
 						position={[0, -5, 0]}
 						height={10} width={100} length={100}
@@ -93,8 +63,7 @@ export default class MoneyStackScene extends Component {
 	_onInitialized(state, reason) {
 		if (state == ViroConstants.TRACKING_NORMAL) {
 			this.setState({
-				initialText: "",
-				moneyText: "$" + COUNT
+				initialText: ""
 			});
 		} else if (state == ViroConstants.TRACKING_NONE) {
 			// Handle loss of tracking

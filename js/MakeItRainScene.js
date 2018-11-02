@@ -20,7 +20,7 @@ import {
 } from 'react-viro';
 
 import Dollar from './money-types/Dollar';
-import HundredDollarStack from './money-types/HundredDollarStack';
+import HundredDollarBundle from './money-types/HundredDollarBundle';
 
 
 
@@ -50,7 +50,7 @@ export default class MakeItRainScene extends Component {
 				for (let k = 0; k < (count*5*2); k++) {
 					let index = i + j + k;
 					let item = (
-						<HundredDollarStack
+						<HundredDollarBundle
 							key={i+''+j+''+k}
 							position={[Math.random(), k, Math.random()]}
 							physicsBody={{

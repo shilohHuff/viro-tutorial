@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 
 import {
-    ViroBox,
+    Viro3DObject,
     ViroMaterials
 } from 'react-viro';
 
-export default class Dollar extends Component {
+const dollarsObj = require('../res/dollar-stack/dollar-stack.obj');
+const dollarsTxr = require('../res/dollar-stack/dollar_01.svg.png');
+
+ViroMaterials.createMaterials({ dollarsStackHundred: { diffuseTexture: dollarsTxr } });
+
+export default class HundredDollarBundle extends Component {
     constructor() {
         super();
         this.onDrag = this.onDrag.bind(this);
@@ -53,23 +58,18 @@ export default class Dollar extends Component {
             }
         }
         return (
-          <ViroBox position = {[...position]}
+          <Viro3DObject
+            type = "OBJ"
+            source = { dollarsObj }
+            materials = { ["dollarsStackHundred"] }
             ref = { this.onReference }
-            height = { .001 }
-            width = { .16 }
-            length = { .07 }
+            position = { [...position] }
+            scale = { [1, 1, 1] }
             dragType = "FixedToWorld"
             onDrag = { this.onDrag }
             onCollision = { this.onCollision }
             physicsBody = { physicsBody }
-            materials = {["dollar"]}
           />
         );
     }
 }
-
-ViroMaterials.createMaterials({
-    dollar: {
-        diffuseTexture: require('../res/dollar-stack/dollar-stack_dollar-only.png'),
-    },
-});

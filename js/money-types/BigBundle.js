@@ -5,12 +5,12 @@ import {
     ViroMaterials
 } from 'react-viro';
 
-const dollarsObj = require('../res/dollar-stack/dollar-stack.obj');
+const dollarsObj = require('../res/dollarStackDouble/dollarStackDouble.obj');
 const dollarsTxr = require('../res/dollar-stack/dollar_01.svg.png');
 
 ViroMaterials.createMaterials({ dollarsStackHundred: { diffuseTexture: dollarsTxr } });
 
-export default class Dollar extends Component {
+export default class BigBundle extends Component {
     constructor() {
         super();
         this.onDrag = this.onDrag.bind(this);

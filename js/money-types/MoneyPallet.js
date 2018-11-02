@@ -2,11 +2,14 @@ import React, { Component } from 'react';
 
 import {
     ViroNode,
-    ViroBox,
+    Viro3DObject,
     ViroMaterials
 } from 'react-viro';
 
+const palletObj = require('../res/pallet/pallet.obj');
+const palletTexture = require('../res/pallet/pallet.png');
 
+ViroMaterials.createMaterials({ palletMaterial: { diffuseTexture: palletTexture } });
 export default class MoneyPallet extends Component {
     constructor(){
         super();
@@ -54,26 +57,19 @@ export default class MoneyPallet extends Component {
         }
         return (
             <ViroNode>
-                <ViroBox
-                    position={[position[0], position[1], position[2]]}
-                    ref={this.onReference}
-                    height={.645} width={.8} length={1.2}
-                    dragType="FixedToWorld"
-                    onDrag={this.onDrag}
-                    onCollision={this.onCollision}
-                    physicsBody={physicsBody}
-                    materials={["dollar"]}
-                />
+              <Viro3DObject
+                type = "OBJ"
+                source = { palletObj }
+                materials = { ["palletMaterial"] }
+                ref = { this.onReference }
+                position = { [...position] }
+                scale = { [1, 1, 1] }
+                dragType = "FixedToWorld"
+                onDrag = { this.onDrag }
+                onCollision = { this.onCollision }
+                physicsBody = { physicsBody }
+              />
             </ViroNode>
         );
     }
 }
-
-ViroMaterials.createMaterials({
-	dollar: {
-		diffuseTexture: require('../res/dollar-stack/dollar-stack_dollar-only.png'),
-    },
-    grid: {
-		diffuseTexture: require('../res/grid_bg.jpg'),
-	}
-});

@@ -1,4 +1,4 @@
-const PALLET_VALUE = 10000;
+const PALLET_VALUE = 42000;
 const BIG_BUNDLE_VALUE = 1000;
 const BUNDLE_VALUE = 100;
 const DOLLAR_VALUE = 1;
@@ -25,10 +25,8 @@ export const typeQuantityAndRemainder = (balance, typeValue) => {
         leftOverBalance: 0
     }
 
-    quantity.count = Math.floor(count / typeValue);
-    quantity.leftOverBalance = accountBalance % typeValue;
+    quantity.count = Math.floor(balance / typeValue);
+    quantity.leftOverBalance = balance % typeValue;
 
     return quantity;
 }
-
-
