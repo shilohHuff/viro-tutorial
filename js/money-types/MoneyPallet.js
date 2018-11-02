@@ -15,7 +15,7 @@ const stackTexture = require('../res/pallet/dollar-stack_dollar-only.png');
 ViroMaterials.createMaterials(
 	{
 		palletMaterial: { diffuseTexture: palletTexture }
-		stackMaterial: { stackTexture: palletTexture }
+		stackMaterial: { diffuseTexture: stackTexture }
 	}
 );
 
