@@ -70,14 +70,14 @@ export default class MoneyStackScene extends Component {
 var styles = StyleSheet.create({
   accountNameStyle: {
 		fontFamily: 'Arial',
-		fontSize: 20,
+		fontSize: 15,
 		color: '#ffffff',
 		textAlignVertical: 'center',
 		textAlign: 'center',
 	},
 	accountBalanceStyle: {
 		fontFamily: 'Arial',
-		fontSize: 20,
+		fontSize: 15,
 		color: '#ffffff',
 		textAlignVertical: 'center',
 		textAlign: 'center',
