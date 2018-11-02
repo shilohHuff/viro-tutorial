@@ -4,6 +4,8 @@ import React, { Component } from 'react';
 
 import { StyleSheet } from 'react-native';
 
+import { connect } from 'react-redux';
+
 import {
 	ViroARScene,
 	ViroText,
@@ -27,8 +29,26 @@ export default class MoneyStackScene extends Component {
 		super();
 		this.state = {
 			initialText: "Initializing AR...",
+			accounts: []
 		};
+		this.generateAccountComponents = this.generateAccountComponents.bind(this);
 		this._onInitialized = this._onInitialized.bind(this);
+	}
+
+	generateAccountComponents(accounts) {
+		let accountComponent = [];
+
+		console.log('in generate account components', accounts);
+		for(var i = 0; i < accounts.length; i++) {
+			console.log('index', i, 'account', accounts[i]);
+			accountComponent.push(
+				<AccountComponent position={[-i,0,0]} account={accounts[i]} />
+			);
+		}
+
+		console.log('after loop', accountComponent);
+
+		return accountComponent;
 	}
 
 	render() {
@@ -44,9 +64,8 @@ export default class MoneyStackScene extends Component {
 					visible={true}
 					opacity={1}
 				>
-					<AccountComponent position={[-1,0,0]} account={{name: 'Checkings Account', balance: 42177}}/>
-					<AccountComponent position={[0,0,0]} account={{name: 'Savings Account', balance: 11928}}/>
-					<AccountComponent position={[1,0,0]} account={{name: 'Secured Card', balance: 1}}/>
+					{this.generateAccountComponents(this.props.accounts)}
+
 					<ViroBox
 						position={[0, -5, 0]}
 						height={10} width={100} length={100}
@@ -81,4 +100,24 @@ var styles = StyleSheet.create({
 	},
 });
 
-module.exports = MoneyStackScene;
+
+// map pieces of the redux state to component props
+const mapStateToProps = (state, props) => {
+    return {
+			accounts: state.accounts.accounts
+    };
+};
+
+// map redux dispatches to component props
+const mapDispatchToProps = (dispatch, props) => {
+    return {
+
+    };
+};
+
+const ConnectedMoneyStackScene = connect(
+    mapStateToProps,
+    mapDispatchToProps
+) (MoneyStackScene);
+
+module.exports = ConnectedMoneyStackScene;
