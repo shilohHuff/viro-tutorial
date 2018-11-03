@@ -10,10 +10,10 @@ export const countOfEachMoneyType = (accountBalance) => {
     let dollarQuantity = typeQuantityAndRemainder(bundleQuantity.leftOverBalance, DOLLAR_VALUE);
 
     return {
-        palletQuantity : palletQuantity,
-        bigBundleQuantity : bigBundleQuantity,
-        bundleQuantity : bundleQuantity,
-        dollarQuantity : dollarQuantity
+        palletQuantity: palletQuantity,
+        bigBundleQuantity: bigBundleQuantity,
+        bundleQuantity: bundleQuantity,
+        dollarQuantity: dollarQuantity
     }
 };
 

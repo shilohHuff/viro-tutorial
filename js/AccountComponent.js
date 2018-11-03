@@ -10,8 +10,6 @@ import {
   ViroMaterials,
 } from 'react-viro';
 
-import HundredDollarBundle from './money-types/HundredDollarBundle';
-import Dollar from './money-types/Dollar';
 import DollarStack from './stacks/DollarStack';
 import HundredDollarBundleStack from './stacks/HundredDollarBundleStack';
 import BigBundleStack from './stacks/BigBundleStack';
