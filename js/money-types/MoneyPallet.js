@@ -9,13 +9,11 @@ import {
 
 
 const palletObj = require('../res/pallet/pallet.obj');
-const palletTexture = require('../res/pallet/pallet.png');
-const stackTexture = require('../res/pallet/dollar-stack_dollar-only.png');
+const palletTexture = require('../res/pallet/pallet-combined.png');
 
 ViroMaterials.createMaterials(
 	{
 		palletMaterial: { diffuseTexture: palletTexture }
-		stackMaterial: { diffuseTexture: stackTexture }
 	}
 );
 
@@ -70,7 +68,7 @@ export default class MoneyPallet extends Component {
               <Viro3DObject
                 type = "OBJ"
                 source = { palletObj }
-                materials = { ["palletMaterial","stackMaterial"] }
+                materials = { ["palletMaterial"] }
                 ref = { this.onReference }
                 position = { [...position] }
                 scale = { [1, 1, 1] }
