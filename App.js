@@ -186,7 +186,6 @@ export default class ViroSample extends Component {
           store.dispatch(addAccount("Secured Card", 1));
           break;
       }
-      console.log('in menu state', store);
       this.setState({
         navigatorType: MONEY_STACK
       })

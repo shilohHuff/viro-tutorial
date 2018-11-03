@@ -43,7 +43,6 @@ export default class MakeItRainScene extends Component {
 
 	generateMoneyStack(count) {
 		let moneyStack = [];
-		console.log("start");
 		count = Math.cbrt(count)
 		for (let i = 0; i < (count/5); i++) {
 			for (let j = 0; j < (count/2); j++) {

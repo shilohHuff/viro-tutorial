@@ -37,16 +37,11 @@ export default class MoneyStackScene extends Component {
 
 	generateAccountComponents(accounts) {
 		let accountComponent = [];
-
-		console.log('in generate account components', accounts);
 		for(var i = 0; i < accounts.length; i++) {
-			console.log('index', i, 'account', accounts[i]);
 			accountComponent.push(
 				<AccountComponent position={[-i,0,0]} account={accounts[i]} />
 			);
 		}
-
-		console.log('after loop', accountComponent);
 
 		return accountComponent;
 	}
