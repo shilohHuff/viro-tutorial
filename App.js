@@ -239,6 +239,7 @@ var localStyles = StyleSheet.create({
     width:'100%',
     color:'#FFF',
     fontFamily: Platform.OS === 'ios' ? 'Helvetica Neue' : 'sans-serif-thin',
+    fontWeight: '300',
     textAlign:'center',
     fontSize : 25,
     backgroundColor: "#12395B",
@@ -247,18 +248,18 @@ var localStyles = StyleSheet.create({
     color:'#000',
     textAlign:'center',
     fontFamily: Platform.OS === 'ios' ? 'Helvetica Neue' : 'sans-serif-thin',
-    fontSize : 20
+    fontWeight: '300',
+    fontSize : 20,
+    lineHeight: 80
   },
   buttons : {
     height: 80,
     width:'100%',
-    paddingTop:20,
-    paddingBottom:20,
-    marginBottom: 10,
     backgroundColor:'#fff',
+    margin: 10
   },
   exitButtonText: {
-    color:'#FFF',
+    color:'#000',
     fontWeight: '800',
     textAlign:'center',
     fontFamily: Platform.OS === 'ios' ? 'Helvetica Neue' : 'sans-serif-thin',
