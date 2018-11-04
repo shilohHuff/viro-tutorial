@@ -39,7 +39,7 @@ export default class MoneyStackScene extends Component {
 		let accountComponent = [];
 		for(var i = 0; i < accounts.length; i++) {
 			accountComponent.push(
-				<AccountComponent position={[-i,0,0]} account={accounts[i]} />
+				<AccountComponent key={i} position={[-i,0,0]} account={accounts[i]} />
 			);
 		}
 
@@ -49,7 +49,14 @@ export default class MoneyStackScene extends Component {
 	render() {
 		return (
 			<ViroARScene displayPointCloud={true} anchorDetectionTypes={"PlanesHorizontal"} onTrackingUpdated={this._onInitialized} >
-				<ViroText text={this.state.initialText} scale={[.7, .7, .7]} position={[0, 0, -1]} style={styles.helloWorldTextStyle} />
+				<ViroText 
+					text={this.state.initialText} 
+					scale={[.7, .7, .7]} 
+					position={[0, 0, -1]} 
+					style={styles.helloWorldTextStyle}
+					extrusionDepth={2}
+     				materials={["frontMaterial", "backMaterial", "sideMaterial"]}
+				/>
 				<ViroAmbientLight color={"#aaaaaa"} />
 				<ViroSpotLight innerAngle={5} outerAngle={90} direction={[0, -1, -.2]}
 					position={[0, 3, 1]} color="#ffffff" castsShadow={true} />
@@ -95,6 +102,17 @@ var styles = StyleSheet.create({
 	},
 });
 
+ViroMaterials.createMaterials({
+    frontMaterial: {
+      diffuseColor: '#FFFFFF',
+    },
+    backMaterial: {
+      diffuseColor: '#FF0000',
+    },
+    sideMaterial: {
+      diffuseColor: '#000011',
+    },
+});
 
 // map pieces of the redux state to component props
 const mapStateToProps = (state, props) => {

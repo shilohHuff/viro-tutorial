@@ -73,8 +73,8 @@ export default class MakeItRainScene extends Component {
 				<ViroSpotLight innerAngle={5} outerAngle={90} direction={[0, -1, -.2]}
 					position={[0, 3, 1]} color="#ffffff" castsShadow={true} />
 				<ViroARPlane
-					minHeight={.1}
-					minwidth={.1}
+					minHeight={.001}
+					minwidth={.001}
 					visible={true}
 					opacity={1}
 				>

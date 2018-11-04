@@ -70,7 +70,6 @@ export default class ViroSample extends Component {
   render() {
     return (
       <Provider store={store}>
-
         {this.getProvidedExperience()}
       </Provider>
     );
@@ -200,6 +199,9 @@ export default class ViroSample extends Component {
   }
 }
 
+//#12395B
+//
+
 var localStyles = StyleSheet.create({
   viroContainer :{
     flex : 1,
@@ -208,38 +210,38 @@ var localStyles = StyleSheet.create({
   outer : {
     flex : 1,
     flexDirection: 'row',
-    alignItems:'center',
-    backgroundColor: "black",
+    alignItems:'flex-start',
+    backgroundColor: "#12395B",
   },
   inner: {
     flex : 1,
     flexDirection: 'column',
     alignItems:'center',
-    backgroundColor: "black",
+    backgroundColor: "#12395B",
   },
   titleText: {
     paddingTop: 30,
     paddingBottom: 20,
-    color:'#fff',
+    width:'100%',
+    color:'#FFF',
+    fontFamily: 'sans-serif-thin',
     textAlign:'center',
-    fontSize : 25
+    fontSize : 25,
+    backgroundColor: "#12395B",
   },
   buttonText: {
-    color:'#fff',
+    color:'#000',
     textAlign:'center',
+    fontFamily: 'sans-serif-thin',
     fontSize : 20
   },
   buttons : {
     height: 80,
-    width: 150,
+    width:'100%',
     paddingTop:20,
     paddingBottom:20,
-    marginTop: 10,
     marginBottom: 10,
-    backgroundColor:'#68a0cf',
-    borderRadius: 10,
-    borderWidth: 1,
-    borderColor: '#fff',
+    backgroundColor:'#fff',
   },
   exitButton : {
     height: 50,
