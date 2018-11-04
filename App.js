@@ -16,6 +16,7 @@ import {
   PixelRatio,
   Div,
   TouchableHighlight,
+  Platform
 } from 'react-native';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
@@ -237,7 +238,7 @@ var localStyles = StyleSheet.create({
     paddingBottom: 20,
     width:'100%',
     color:'#FFF',
-    fontFamily: 'sans-serif-thin',
+    fontFamily: Platform.OS === 'ios' ? 'Helvetica Neue' : 'sans-serif-thin',
     textAlign:'center',
     fontSize : 25,
     backgroundColor: "#12395B",
@@ -245,7 +246,7 @@ var localStyles = StyleSheet.create({
   buttonText: {
     color:'#000',
     textAlign:'center',
-    fontFamily: 'sans-serif-thin',
+    fontFamily: Platform.OS === 'ios' ? 'Helvetica Neue' : 'sans-serif-thin',
     fontSize : 20
   },
   buttons : {
@@ -260,7 +261,7 @@ var localStyles = StyleSheet.create({
     color:'#FFF',
     fontWeight: '800',
     textAlign:'center',
-    fontFamily: 'sans-serif-thin',
+    fontFamily: Platform.OS === 'ios' ? 'Helvetica Neue' : 'sans-serif-thin',
     fontSize : 20
   },
   exitButton : {
