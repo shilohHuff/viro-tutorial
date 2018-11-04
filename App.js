@@ -98,6 +98,9 @@ export default class ViroSample extends Component {
     return (
       <View style={localStyles.outer} >
         <View style={localStyles.inner} >
+          <Text style={localStyles.bannerText}>
+            Visualize Your Money!
+          </Text>
           <Text style={localStyles.titleText}>
             What would you like to do?
           </Text>
@@ -232,6 +235,15 @@ var localStyles = StyleSheet.create({
     flexDirection: 'column',
     alignItems:'center',
     backgroundColor: "#12395B",
+  },
+  bannerText: {
+    paddingTop: 60,
+    width:'100%',
+    color:'#FFF',
+    textAlign:'center',
+    fontSize: 70,
+    fontStyle: 'italic',
+    fontFamily: Platform.OS === 'ios' ? 'Helvetica Neue' : 'sans-serif-thin'
   },
   titleText: {
     paddingTop: 30,
