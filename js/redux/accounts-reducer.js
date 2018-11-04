@@ -3,10 +3,6 @@ import {
     SELECT_ACCOUNT
 } from './actions';
 
-store.dispatch(addAccount("Checking Account", 42177));
-          store.dispatch(addAccount("Savings Account", 11928));
-          store.dispatch(addAccount("Secured Card", 1));
-
 const initialState = {
     selected: [],
     accounts: [

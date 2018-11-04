@@ -14,6 +14,7 @@ import {
   View,
   StyleSheet,
   PixelRatio,
+  Div,
   TouchableHighlight,
 } from 'react-native';
 import { Provider } from 'react-redux';
@@ -57,7 +58,8 @@ export default class ViroSample extends Component {
 
     this.state = {
       navigatorType : defaultNavigatorType,
-      sharedProps : sharedProps
+      sharedProps : sharedProps,
+      isLoading: false
     }
 
     this._exitViro = this._exitViro.bind(this);
@@ -147,15 +149,29 @@ export default class ViroSample extends Component {
 
   getMoneyStackScene() {
     return (
-      <ViroARSceneNavigator {...this.state.sharedProps}
-        initialScene={{scene: MoneyStackScene}} />
+        <View  style={localStyles.outer} >
+          <ViroARSceneNavigator style={localStyles.arView} apiKey="688B6179-61A8-44A4-871B-E330CA12690E" initialScene={{scene: MoneyStackScene}} />
+          <View style={{position: 'absolute',  left: 0, right: 0, bottom: 0, alignItems: 'center'}}>
+            <TouchableHighlight style={localStyles.exitButton}
+              onPress={this._exitViro}>
+              <Text style={localStyles.exitButtonText}>Back</Text>
+            </TouchableHighlight>
+          </View>
+        </View>
     );
   }
 
   getMakeItRainScene() {
     return (
-      <ViroARSceneNavigator {...this.state.sharedProps}
-        initialScene={{scene: MakeItRainScene}} />
+      <View  style={localStyles.outer} >
+          <ViroARSceneNavigator style={localStyles.arView} apiKey="688B6179-61A8-44A4-871B-E330CA12690E" initialScene={{scene: MakeItRainScene}} />
+          <View style={{position: 'absolute',  left: 0, right: 0, bottom: 0, alignItems: 'center'}}>
+            <TouchableHighlight style={localStyles.exitButton}
+              onPress={this._exitViro}>
+              <Text style={localStyles.exitButtonText}>Back</Text>
+            </TouchableHighlight>
+          </View>
+        </View>
     );
   }
 
@@ -202,14 +218,13 @@ export default class ViroSample extends Component {
 
 var localStyles = StyleSheet.create({
   viroContainer :{
-    flex : 1,
-    backgroundColor: "black",
+    flex : 1
+  },
+  arView :{
+    flex : 1
   },
   outer : {
     flex : 1,
-    flexDirection: 'row',
-    alignItems:'flex-start',
-    backgroundColor: "#12395B",
   },
   inner: {
     flex : 1,
@@ -241,6 +256,13 @@ var localStyles = StyleSheet.create({
     marginBottom: 10,
     backgroundColor:'#fff',
   },
+  exitButtonText: {
+    color:'#FFF',
+    fontWeight: '800',
+    textAlign:'center',
+    fontFamily: 'sans-serif-thin',
+    fontSize : 20
+  },
   exitButton : {
     height: 50,
     width: 100,
@@ -248,9 +270,11 @@ var localStyles = StyleSheet.create({
     paddingBottom:10,
     marginTop: 10,
     marginBottom: 10,
-    backgroundColor:'#68a0cf',
+    backgroundColor:'#FFFFFF',
     borderRadius: 10,
     borderWidth: 1,
+    opacity: 0.5,
+    color: '#FFF',
     borderColor: '#fff',
   }
 });

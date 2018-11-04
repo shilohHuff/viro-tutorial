@@ -12,13 +12,9 @@ import {
 	ViroConstants,
 	ViroBox,
 	ViroMaterials,
-	Viro3DObject,
 	ViroAmbientLight,
 	ViroSpotLight,
-	ViroARPlaneSelector,
 	ViroARPlane,
-	ViroNode,
-	ViroAnimations,
 } from 'react-viro';
 
 import AccountComponent from './AccountComponent';
@@ -47,6 +43,8 @@ export default class MoneyStackScene extends Component {
 	}
 
 	render() {
+
+		//let goHome = this.props.sceneNavigator.viroAppProps.goHome;
 		return (
 			<ViroARScene displayPointCloud={true} anchorDetectionTypes={"PlanesHorizontal"} onTrackingUpdated={this._onInitialized} >
 				<ViroText 
@@ -116,8 +114,8 @@ ViroMaterials.createMaterials({
 
 // map pieces of the redux state to component props
 const mapStateToProps = (state, props) => {
-	let accounts = this.state.accounts;
-	let selected = this.state.selected;
+	let accounts = state.accounts.accounts;
+	let selected = state.accounts.selected;
 
 	let selectedAccounts = []
 	selected.forEach(index => {
