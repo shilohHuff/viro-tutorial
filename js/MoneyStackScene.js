@@ -116,8 +116,16 @@ ViroMaterials.createMaterials({
 
 // map pieces of the redux state to component props
 const mapStateToProps = (state, props) => {
+	let accounts = this.state.accounts;
+	let selected = this.state.selected;
+
+	let selectedAccounts = []
+	selected.forEach(index => {
+		selectedAccounts.push(accounts[index]);
+	});
+
     return {
-			accounts: state.accounts.accounts
+			accounts: selectedAccounts
     };
 };
 

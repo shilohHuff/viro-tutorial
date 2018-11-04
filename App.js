@@ -19,7 +19,7 @@ import {
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import reducers from './js/redux/reducers';
-import { addAccount } from './js/redux/actions.js';
+import { addAccount, selectAccounts } from './js/redux/actions.js';
 
 import MoneyStackScene from './js/MoneyStackScene';
 import MakeItRainScene from './js/MakeItRainScene';
@@ -171,18 +171,16 @@ export default class ViroSample extends Component {
     return () => {
       switch(selectionType) {
         case CHECKING_ACCOUNT:
-          store.dispatch(addAccount("Checking Account", 42177));
+          store.dispatch(selectAccounts([0]));
           break;
         case SAVINGS_ACCOUNT:
-          store.dispatch(addAccount("Savings Account", 11928));
+          store.dispatch(selectAccounts([1]));
           break;
         case SECURED_CARD:
-          store.dispatch(addAccount("Secured Card", 1));
+          store.dispatch(selectAccounts([2]));
           break;
         default:
-          store.dispatch(addAccount("Checking Account", 42177));
-          store.dispatch(addAccount("Savings Account", 11928));
-          store.dispatch(addAccount("Secured Card", 1));
+          store.dispatch(selectAccounts([0,1,2]));
           break;
       }
       this.setState({
